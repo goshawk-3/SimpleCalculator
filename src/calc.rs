@@ -54,3 +54,36 @@ impl Display for Token {
     }
 }
 
+/// Evaluates a binary operator
+fn eval_binary<F>(stack: &mut Stack, ops: F) -> Result<(), Error>
+    where
+        F: FnOnce(OperandType, OperandType) -> OperandType,
+{
+    let a = stack.pop_back().ok_or::<Error>(Error::InvalidExpr)?;
+    let b = stack.pop_back().ok_or::<Error>(Error::InvalidExpr)?;
+    stack.push_back(ops(b, a));
+    Ok(())
+}
+
+
+/// Evaluates any of the supported operands or push a number to the stack.
+pub(crate) fn eval(stack: &mut Stack, token: Token) -> Result<(), Error> {
+    match token {
+        Token::Add => eval_binary(stack, OperandType::add),
+        Token::Sub => eval_binary(stack, OperandType::sub),
+        Token::Mul => eval_binary(stack, OperandType::mul),
+        Token::Div => {
+            match stack.get(1) {
+                None => return Err(Error::InvalidExpr),
+                Some(v) => {
+                    if *v == 0 {
+                        return Err(Error::DivideByZero);
+                    }
+                }
+            }
+            eval_binary(stack, OperandType::div)
+        }
+        Token::Operand(n) => { stack.push_back(n); Ok(())},
+        _ => Err(Error::InvalidToken(token.to_string())),
+    }
+}
