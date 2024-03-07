@@ -9,6 +9,6 @@ thiserror = { version = "1.0.57", features = [] }
 
 
 [[bin]]
-name = "expr"
+name = "calc_cli"
 path = "src/bin/calc_cli.rs"
 

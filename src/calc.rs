@@ -17,7 +17,7 @@ pub(crate) enum Token {
 }
 
 impl Token {
-    pub fn precedence(&self) -> u32 {
+    pub(crate) fn precedence(&self) -> u32 {
         match *self {
             Self::Lparen | Self::Rparen => 0,
             Self::Add | Self::Sub => 1,
@@ -26,7 +26,7 @@ impl Token {
         }
     }
 
-    pub fn from_char(c: char) -> Option<Token> {
+    pub(crate) fn from_char(c: char) -> Option<Token> {
         Some(match c {
             '+' => Self::Add,
             '-' => Self::Sub,

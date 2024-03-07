@@ -7,15 +7,16 @@ fn main() -> io::Result<()> {
     let mut buf = String::new();
     loop {
         buf.clear();
-        println!("> expr:");
+        println!("Type expression:");
         stdin.lock().read_line(&mut buf)?;
-        if buf.trim().is_empty() {
+        let buf= buf.trim();
+        if buf.is_empty() {
             break;
         }
 
         match try_eval(&buf) {
             Ok(res) => {
-                println!("result: {res}",);
+                println!("{buf} = {res}",);
             }
             Err(err) => {
                 println!("Could not evaluate due to: {err}",);

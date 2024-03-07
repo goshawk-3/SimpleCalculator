@@ -7,7 +7,7 @@ type OperandType = i32;
 
 #[derive(Error, Debug, PartialEq)]
 pub enum Error {
-    #[error("devide-by-zero")]
+    #[error("divide-by-zero")]
     DivideByZero,
     #[error("invalid token {}", .0)]
     InvalidToken(String),
@@ -17,6 +17,9 @@ pub enum Error {
     InvalidNumber,
 }
 
+/// Evaluates an arithmetic expression
+///
+/// Returns `Error` if unsupported token or malformed expression found
 pub fn try_eval(expr: &str) -> Result<OperandType, Error> {
     let rpn = yard::to_rpn(expr)?;
     let mut stack = VecDeque::new();
