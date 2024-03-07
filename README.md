@@ -7,7 +7,7 @@ A simple library for evaluating arithmetic expressions.
 The library (libcalc) exposes a function `try_eval` that does the following:
 
 - Convert infix notation to Reverse Polish Notation
-- Perform stack-based evaluation for supported binary operator by using.
+- Perform stack-based evaluation for supported binary operators.
 
 Supported operators: `+, - , (, ), *, /`
 
