@@ -8,3 +8,7 @@ run_cli: ## Build library
 	cargo run --release --bin calc_cli
 
 
+test: ## Test library
+	cargo test -p calculator
+
+

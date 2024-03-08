@@ -1,7 +1,9 @@
 use crate::calc::Token;
 use crate::{Error, OperandType};
 
-/// Try to convert an expression into Reverse Polish Notation
+/// Try to convert an expression from infix notation into Reverse Polish Notation
+///
+/// The implementation is based on Shunting Yard algorithm.
 pub fn to_rpn(expr: &str) -> Result<Vec<Token>, Error> {
     let mut rpn: Vec<Token> = Vec::new();
     let mut stack: Vec<Token> = Vec::new();

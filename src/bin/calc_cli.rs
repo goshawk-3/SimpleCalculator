@@ -7,7 +7,7 @@ fn main() -> io::Result<()> {
     let mut buf = String::new();
     loop {
         buf.clear();
-        println!("Type expression:");
+        println!("Enter expression:");
         stdin.lock().read_line(&mut buf)?;
         let buf= buf.trim();
         if buf.is_empty() {
