@@ -1,4 +1,4 @@
-# calc
+# Simple Calculator
 A simple library for evaluating arithmetic expressions.
 
 
@@ -8,7 +8,6 @@ The library (libcalc) exposes a function `try_eval` that does the following:
 
 - Convert infix notation to Reverse Polish Notation by using Shunting Yard algorithm.
 - Perform stack-based evaluation for supported binary operators.
-
 
 Supported operators: `+, - , (, ), *, /`
 
